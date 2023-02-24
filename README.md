@@ -1,25 +1,15 @@
 # RBL
-RTOS Basic Layer
-This project's idea comes from rblos.
-The purpose is to build up a platform layer up to SOC baremental software or any RTOS/Linux.
-Any embedded software based on RBL can be easily ported and tested in windows or Linux envionment.
-This project will be managed by git. While RBLOS's version is managed by directory. 
+RTOS Basic Layer (RBL)
+The purpose is to build up a platform layer up to SOC baremental software or any RTOS/PC-based OS. Any embedded software based on RBL can be easily ported and tested in windows or Linux envionment. 
 
-The basic idea of RBL is to avoid name polution when an embedded system is compiled in Linux or Cygwin.
-For example:
-The embedded system will have its own printf which output char though UART, 
-But when compile and run the embedded system on Cygwin, there is another version of printf from Cygwin.
-So you really want the printf to output to screen, so you can call rbl_printf which comes from RBL.
-RBL is a serious of libaries in which rbl_printf will call the real printf from Cygwin
-In that way, you don't need to change the embeded version of printf.
+The basic idea of RBL is to avoid name polution when an embedded system is compiled in PC-based OS such as Linux or Cygwin. For example: The embedded system will have its own printf which output char though UART, But when compile and run the embedded system on PC-based OS, there is another version of printf from PC-based OS. When you really want the printf to output to screen, you need to differenciate those two kinds of printf. To do so, you can call rbl_printf which comes from RBL. 
+RBL is a series of libaries in which rbl_printf will call the real printf from PC-based OS. In that way, you don't need to change the embeded version of printf.
 
-The second idea is to replace all BSP API which to operate with CPU and SOC hardware with software stub function.
-The stub function will emulate all hardware behavior.
+The second idea is to replace all BSP API which to manipulate with CPU and SOC hardware with software stub function. The stub function will emulate all hardware behavior.In this way, you can derectly debug embedded software in PC-based OS
 
-Why do we need to run embeded software on Cygwin?
-It's related to efficiency.
-The usally ways to debug are :
-1. use simulator and hardware
-2. use emulator such as Qemu
+Why do we need to run embeded software on Cygwin? It's related to efficiency. The usally ways to debug are :
 
-Both ways to debug is not convienent as Cygwin's application debug.
+1.use simulator and hardware
+2.use emulator such as Qemu
+
+Both ways to debug is not convienent and quick as PC-based OS's application debug.
